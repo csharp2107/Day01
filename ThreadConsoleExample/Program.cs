@@ -14,6 +14,9 @@ namespace ThreadConsoleExample
         static void Main(string[] args)
         {
             Console.WriteLine("Start execution...");
+
+            LockPerformance.Run();            
+
             //LongOperation();
 
             //ThreadStart obj = new ThreadStart(LongOperation);
