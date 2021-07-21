@@ -12,12 +12,14 @@ namespace ThreadPoolExample
     {
         static void Main(string[] args)
         {
-            //ThreadPool.SetMaxThreads(1, 1);
-            //ThreadPool.SetMinThreads(1, 1);
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    ThreadPool.QueueUserWorkItem(new WaitCallback(MyCustomMethod));
-            //}
+            ThreadPool.SetMaxThreads(1, 1);
+            ThreadPool.SetMinThreads(1, 1);
+            for (int i = 0; i < 10; i++)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(MyCustomMethod));
+            }
+            Console.ReadKey();
+
             Stopwatch sw = new Stopwatch();
             sw.Restart();
             MethodWithThread();
