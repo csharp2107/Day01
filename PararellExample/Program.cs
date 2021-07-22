@@ -18,7 +18,8 @@ namespace PararellExample
             //LoopWithPararell();
             //LoopWithPararellForEach();
             //LoopWithPararellBreakStop();
-            PararellInvoke();
+            SimpleLoopWithPararell();
+            //PararellInvoke();
 
            // Thread t1 = new Thread(() =>
            //{
@@ -40,6 +41,30 @@ namespace PararellExample
             }
             sw.Stop();
             Console.WriteLine("LoopNoPararell - {0}", sw.ElapsedMilliseconds);
+            Console.ReadKey();
+        }
+
+        public static void SimpleLoopWithPararell()
+        {
+            ParallelOptions options = new ParallelOptions()
+            {
+                MaxDegreeOfParallelism = 3
+            };
+
+            try
+            {
+                Parallel.For(0, 100, options, (i, state) =>
+                {
+                    if (i >= 50)
+                        state.Break();
+                    Console.WriteLine($"counter {i}");
+                    
+                });
+            }
+            catch (OperationCanceledException exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
             Console.ReadKey();
         }
 
